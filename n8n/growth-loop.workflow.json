@@ -1,0 +1,224 @@
+{
+  "name": "GrowthLoop AI - 增长运营自动化",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-1",
+      "name": "触发: 手动执行工作流",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/diagnose",
+        "options": {}
+      },
+      "id": "diagnose-1",
+      "name": "1. 漏斗诊断",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 300],
+      "notes": "调用Python API进行漏斗分析，返回问题环节和受影响用户"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/segment",
+        "options": {}
+      },
+      "id": "segment-1",
+      "name": "2. 用户分层",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [690, 300],
+      "notes": "基于诊断结果定位高优先级用户群体"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/strategy",
+        "options": {}
+      },
+      "id": "strategy-1",
+      "name": "3a. 策略推荐",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [910, 300],
+      "notes": "根据漏斗问题和用户分层推荐增长策略"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/generate?variant_count=3",
+        "options": {}
+      },
+      "id": "generate-1",
+      "name": "3b. 内容生成",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1130, 300],
+      "notes": "基于策略生成3版内容变体，各带可验证假设"
+    },
+    {
+      "parameters": {
+        "amount": 1,
+        "unit": "days"
+      },
+      "id": "wait-1",
+      "name": "等待A/B数据回传",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1350, 300],
+      "notes": "暂停工作流，等待A/B测试数据通过Webhook回传",
+      "webhookId": "ab-test-callback"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/abtest",
+        "options": {}
+      },
+      "id": "abtest-1",
+      "name": "4. A/B测试分析",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1570, 300],
+      "notes": "输入实验数据，返回获胜版本和商业影响分析"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.31.12:8000/api/memory/record",
+        "options": {}
+      },
+      "id": "memory-1",
+      "name": "5. 知识沉淀",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1790, 300],
+      "notes": "记录实验结果到知识库，系统越用越聪明"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://192.168.31.12:8000/api/memory",
+        "options": {}
+      },
+      "id": "memory-2",
+      "name": "获取知识库报告",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1790, 500],
+      "notes": "可选：获取完整知识库报告"
+    }
+  ],
+  "connections": {
+    "触发: 手动执行工作流": {
+      "main": [
+        [
+          {
+            "node": "1. 漏斗诊断",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1. 漏斗诊断": {
+      "main": [
+        [
+          {
+            "node": "2. 用户分层",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "2. 用户分层": {
+      "main": [
+        [
+          {
+            "node": "3a. 策略推荐",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3a. 策略推荐": {
+      "main": [
+        [
+          {
+            "node": "3b. 内容生成",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3b. 内容生成": {
+      "main": [
+        [
+          {
+            "node": "等待A/B数据回传",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "等待A/B数据回传": {
+      "main": [
+        [
+          {
+            "node": "4. A/B测试分析",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4. A/B测试分析": {
+      "main": [
+        [
+          {
+            "node": "5. 知识沉淀",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5. 知识沉淀": {
+      "main": [
+        [
+          {
+            "node": "获取知识库报告",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "增长运营",
+      "color": "blue"
+    },
+    {
+      "name": "自动化",
+      "color": "green"
+    }
+  ],
+  "triggerCount": 1,
+  "versionId": "1.0.0"
+}

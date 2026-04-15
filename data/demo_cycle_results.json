@@ -1,0 +1,118 @@
+{
+  "cycle_id": 1,
+  "scenario_name": "SaaS增长周期 (演示)",
+  "timestamp": "2026-04-14T10:00:00",
+  "funnel_result": {
+    "problem_stage": "已活跃→已付费",
+    "leak_rate": 85.2,
+    "actual_conversion": 14.8,
+    "benchmark_conversion": 25.0,
+    "affected_user_ids": ["U0001", "U0003", "U0006", "U0009", "U0014", "U0021", "U0028", "U0035", "U0042", "U0049"],
+    "estimated_impact": "若提升到行业基准，预计每月可多激活约78名用户",
+    "benchmark_gap": 10.2
+  },
+  "segment_result": {
+    "priority_segment": "流失预警-高价值用户",
+    "segment_count": 85,
+    "segment_percentage": 17.0,
+    "segment_profile": "近期活跃度下降，但历史消费金额较高的用户群体，平均消费金额 $320+，最近一次活跃距今超过30天",
+    "target_user_ids": ["U0001", "U0003", "U0006", "U0009", "U0014", "U0021", "U0028", "U0035", "U0042", "U0049"],
+    "recommended_intervention": "VIP专属激活计划",
+    "estimated_conversion_uplift": "预计提升15-25%"
+  },
+  "strategy_result": {
+    "campaign_type": "VIP专属挽回邮件 + 限时Pro功能体验",
+    "message_framework": "价值发现 + 社交证明 + FOMO紧迫性",
+    "tone_guidance": "专业、关怀、尊重用户时间",
+    "cta_recommendation": "立即激活VIP专属权益",
+    "channel_priority": ["邮件", "站内信", "短信"],
+    "selected_templates": ["email_activation", "in_app_nudge", "sms_reminder"],
+    "reasoning": "基于漏斗诊断，已活跃→已付费环节转化率远低于行业基准。结合行业洞察「风格一致性是核心痛点」，建议以解决此痛点为切入点，提供Pro功能的风格锁定能力作为VIP权益。"
+  },
+  "content_result": {
+    "variants": [
+      {
+        "version": "A - 功能价值导向",
+        "hypothesis": "直接展示用户尚未体验到的Pro功能核心价值，降低首次付费的行动门槛",
+        "content": "亲爱的用户，\n\n我们注意到您已活跃使用我们的平台超过30天，但尚未解锁Pro功能。\n\n作为高价值用户，您专属获得【7天Pro版免费体验】权益。体验期间，您将享受：\n\n✓ 风格锁定功能 —— 批量生成风格统一的设计作品\n✓ 高级模板库 —— 500+ 行业精选模板，一键出图\n✓ 无限制导出 —— 高清PNG/SVG/PDF全格式导出\n✓ 专属客服支持 —— 1对1产品设计顾问\n\n根据我们的用户数据，使用Pro功能的团队平均设计效率提升40%，作品通过率提升28%。\n\n立即激活权益，探索更多可能。\n\nGrowthLoop AI 团队"
+      },
+      {
+        "version": "B - 社交证明导向",
+        "hypothesis": "利用同行案例和数据证明，降低观望用户的尝试门槛",
+        "content": "您好，\n\n和您同赛道的设计团队，平均每周使用我们的平台生成12个作品。他们发现一个有趣的趋势：\n\n解锁Pro功能的团队，从「活跃」到「持续付费」的平均周期缩短了60%。\n\n「风格锁定」是其中使用率最高的功能之一。它让团队能够批量生成风格统一的作品，大幅提升了品牌一致性。\n\n我们为您预留了【7天Pro版免费体验】权益。无需信用卡，即刻解锁：\n\n• 500+ 高级模板\n• 风格锁定与参数推荐\n• 无限制高清导出\n• 专属客服支持\n\n看看Pro功能如何改变您的工作流。\n\nGrowthLoop AI 团队"
+      },
+      {
+        "version": "C - FOMO紧迫导向",
+        "hypothesis": "限时权益提醒能制造紧迫感，促使犹豫用户立即行动",
+        "content": "重要通知：\n\n您账户中的【VIP专属体验权益】将在48小时后过期。\n\n立即激活，免费获得：\n\n🔥 风格锁定功能 —— 保存并复用最佳风格参数\n🔥 10个高级行业模板 —— 专为您的赛道精选\n🔥 无限制导出权限 —— 高清PNG/SVG/PDF\n🔥 专属客服支持 —— 1对1产品设计顾问\n\n超过3,200名活跃用户已体验Pro功能，平均设计效率提升40%。\n\n点击以下按钮立即激活（48小时后失效）：\n\n👉 [立即激活VIP权益]\n\nGrowthLoop AI 团队"
+      }
+    ],
+    "recommended_ab_setup": "建议使用 A/B 两组测试：A组（功能价值导向）vs B组（社交证明导向），各分配50%目标用户（各约42人），运行7天后分析结果",
+    "personalization_rules": "根据用户注册渠道调整邮件发送时间：社交媒体渠道用户偏好晚间打开，付费广告渠道用户偏好午间"
+  },
+  "ab_result": {
+    "test_name": "SaaS增长周期 (演示) - 已活跃→已付费",
+    "winning_variant": "A - 功能价值导向（趋势性）",
+    "statistical_significance": 0.83,
+    "p_value": 0.168,
+    "actual_uplift": "+5.9%",
+    "downstream_impact": "预计每月可多转化约180名用户完成首次使用",
+    "estimated_monthly_impact": "按当前流量，预计每月可多激活约78名用户，新增收入约 $12,500/月",
+    "recommendation": "A组（功能价值导向）转化率20.6%优于B组14.7%（+5.9pp），p=0.168未达统计显著。建议：扩大样本量至每组300人以上复测；将A组策略作为候选方案继续迭代优化。",
+    "full_report": "## A/B 测试分析报告\n\n### 测试概要\n- 测试名称：已活跃→已付费 转化优化\n- 测试周期：7天\n- 样本量：A组 170人，B组 170人\n- 基线转化率：14.8%\n\n### 测试结果\n| 指标 | A组（功能价值） | B组（社交证明） |\n|------|----------------|----------------|\n| 样本量 | 170 | 170 |\n| 转化数 | 35 | 25 |\n| 转化率 | 20.6% | 14.7% |\n\n### 统计检验\n- Z统计量：1.38\n- P值：0.168\n- 效应量 (Cohen's h)：0.15\n- 结论：在 α=0.05 水平上，差异不显著（趋势性结果，建议扩大样本量复测）\n\n### 商业影响\n- 提升幅度：+5.9个百分点\n- 若全量推广，预计每月可多激活约78名用户\n- 按ARPU $160/月计算，预计新增收入 $12,500/月\n\n### 建议\n1. A组（功能价值导向）转化率优于B组，趋势明显但未达统计显著\n2. 建议扩大样本量至每组300人以上复测\n3. 下一轮测试建议尝试A组变体与C组（FOMO紧迫导向）对比",
+    "conversion_a": 20.6,
+    "conversion_b": 14.7
+  },
+  "aigc_insights": {
+    "sentiment_analysis": {
+      "products": [
+        {"name": "ChatGPT", "avg_sentiment": 0.42, "review_count": 856, "positive_pct": 68, "negative_pct": 32},
+        {"name": "Google Gemini", "avg_sentiment": 0.35, "review_count": 623, "positive_pct": 63, "negative_pct": 37},
+        {"name": "Microsoft Co-Pilot", "avg_sentiment": 0.31, "review_count": 512, "positive_pct": 60, "negative_pct": 40},
+        {"name": "Midjourney", "avg_sentiment": 0.22, "review_count": 387, "positive_pct": 52, "negative_pct": 48}
+      ],
+      "top_pain_points": [
+        {"keyword": "output uncontrollable", "chinese": "输出结果不可控", "freq": 234, "avg_sentiment": -0.45},
+        {"keyword": "learning curve", "chinese": "学习成本高", "freq": 198, "avg_sentiment": -0.38},
+        {"keyword": "inconsistent style", "chinese": "风格不一致", "freq": 187, "avg_sentiment": -0.52},
+        {"keyword": "pricing expensive", "chinese": "定价过高", "freq": 156, "avg_sentiment": -0.41},
+        {"keyword": "slow generation", "chinese": "生成速度慢", "freq": 143, "avg_sentiment": -0.36}
+      ],
+      "top_keywords": ["image", "generation", "quality", "prompt", "style", "creative", "text", "model", "fast", "easy"]
+    },
+    "competitive_matrix": {
+      "total_tools": 467,
+      "categories": [
+        {"name": "AI 文本/写作", "count": 112},
+        {"name": "AI 绘图/图像生成", "count": 89},
+        {"name": "AI 编程助手", "count": 78},
+        {"name": "AI 数据分析", "count": 56},
+        {"name": "AI 语音/音频", "count": 52},
+        {"name": "AI 视频生成", "count": 45},
+        {"name": "AI 设计工具", "count": 35}
+      ]
+    },
+    "scene_insights": {
+      "top_scenes": [
+        {"scene": "角色设计/人物插画", "count": 45230, "pct": 18.1},
+        {"scene": "产品渲染/广告素材", "count": 38760, "pct": 15.5},
+        {"scene": "风景/概念艺术", "count": 32100, "pct": 12.8},
+        {"scene": "UI/UX 设计稿", "count": 25480, "pct": 10.2},
+        {"scene": "Logo/品牌标识", "count": 22350, "pct": 8.9}
+      ],
+      "key_finding": {
+        "insight": "风格一致性是核心未被满足需求",
+        "evidence": [
+          "在 25 万条 Prompt 中，约 12% 包含 'same style', 'consistent', 'keep style' 等关键词",
+          "角色设计类场景中，该比例高达 23%",
+          "产品渲染场景中，15% 的用户需要保持品牌视觉一致性"
+        ],
+        "growth_proposal": {
+          "name": "风格锁定 + 参数推荐",
+          "description": "允许用户保存并复用成功的风格参数组合，系统基于历史记录自动推荐最优参数配置",
+          "expected_impact": "降低新用户的风格探索成本，提高留存率 15-25%"
+        }
+      }
+    }
+  }
+}
